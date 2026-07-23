@@ -1,4 +1,14 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('form[data-confirm]').forEach(form => {
+        form.addEventListener('submit', event => {
+            const message = form.dataset.confirm || 'Bạn chắc chắn muốn thực hiện thao tác này?';
+            if (!window.confirm(message)) event.preventDefault();
+        });
+    });
+    document.querySelectorAll('button[data-confirm]').forEach(button => {
+        button.addEventListener('click', event => {
+            const message = button.dataset.confirm || 'Bạn chắc chắn muốn thực hiện thao tác này?';
+            if (!window.confirm(message)) event.preventDefault();
+        });
+    });
+});

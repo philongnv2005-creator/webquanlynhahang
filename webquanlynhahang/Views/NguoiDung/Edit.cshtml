@@ -1,0 +1,4 @@
+@model UserFormViewModel
+@{ ViewData["Title"] = "Sửa tài khoản"; }
+<div class="page-heading"><div><h1>Sửa tài khoản</h1><p>Cập nhật thông tin, vai trò hoặc đặt lại mật khẩu.</p></div></div><div class="card border-0 shadow-sm"><div class="card-body p-4"><form asp-action="Edit" asp-route-id="@Model.MaNguoiDung" method="post"><input asp-for="MaNguoiDung" type="hidden" /><partial name="_Form" model="Model" /></form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

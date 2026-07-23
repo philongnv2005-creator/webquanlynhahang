@@ -1,0 +1,10 @@
+@model UserFormViewModel
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<div class="row g-3">
+<div class="col-md-6"><label asp-for="TenDangNhap" class="form-label"></label><input asp-for="TenDangNhap" class="form-control" /><span asp-validation-for="TenDangNhap" class="text-danger small"></span></div>
+<div class="col-md-6"><label asp-for="HoTen" class="form-label"></label><input asp-for="HoTen" class="form-control" /><span asp-validation-for="HoTen" class="text-danger small"></span></div>
+<div class="col-md-6"><label asp-for="MaVaiTro" class="form-label"></label><select asp-for="MaVaiTro" asp-items="ViewBag.Roles" class="form-select"><option value="">-- Chọn vai trò --</option></select><span asp-validation-for="MaVaiTro" class="text-danger small"></span></div>
+<div class="col-md-6"><label asp-for="MatKhau" class="form-label"></label><input asp-for="MatKhau" class="form-control" /><div class="form-text">Khi sửa, để trống nếu không đổi mật khẩu.</div><span asp-validation-for="MatKhau" class="text-danger small"></span></div>
+<div class="col-12"><div class="form-check"><input asp-for="TrangThai" class="form-check-input" /><label asp-for="TrangThai" class="form-check-label"></label></div></div>
+</div>
+<div class="mt-4"><button class="btn btn-primary"><i class="bi bi-save me-1"></i>Lưu</button><a class="btn btn-light" asp-action="Index">Quay lại</a></div>

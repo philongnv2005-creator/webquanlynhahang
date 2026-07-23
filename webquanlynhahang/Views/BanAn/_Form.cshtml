@@ -1,0 +1,9 @@
+@model BanAn
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<div class="row g-3">
+    <div class="col-md-6"><label asp-for="TenBan" class="form-label"></label><input asp-for="TenBan" class="form-control" /><span asp-validation-for="TenBan" class="text-danger small"></span></div>
+    <div class="col-md-6"><label asp-for="KhuVuc" class="form-label"></label><input asp-for="KhuVuc" class="form-control" /><span asp-validation-for="KhuVuc" class="text-danger small"></span></div>
+    <div class="col-md-6"><label asp-for="SoCho" class="form-label"></label><input asp-for="SoCho" class="form-control" /><span asp-validation-for="SoCho" class="text-danger small"></span></div>
+    <div class="col-md-6"><label asp-for="TrangThai" class="form-label"></label><select asp-for="TrangThai" asp-items="Html.GetEnumSelectList<TrangThaiBan>()" class="form-select"></select></div>
+</div>
+<div class="mt-4"><button class="btn btn-primary"><i class="bi bi-save me-1"></i>Lưu</button><a class="btn btn-light" asp-action="Index">Quay lại</a></div>

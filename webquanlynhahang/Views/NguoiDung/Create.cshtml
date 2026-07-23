@@ -1,0 +1,4 @@
+@model UserFormViewModel
+@{ ViewData["Title"] = "Tạo tài khoản"; }
+<div class="page-heading"><div><h1>Tạo tài khoản</h1><p>Cấp tài khoản và vai trò cho nhân viên.</p></div></div><div class="card border-0 shadow-sm"><div class="card-body p-4"><form asp-action="Create" method="post"><partial name="_Form" model="Model" /></form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

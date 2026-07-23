@@ -1,0 +1,5 @@
+@model BanAn
+@{ ViewData["Title"] = "Thêm bàn"; }
+<div class="page-heading"><div><h1>Thêm bàn ăn</h1><p>Tạo bàn mới và khai báo sức chứa.</p></div></div>
+<div class="card border-0 shadow-sm form-card"><div class="card-body p-4"><form asp-action="Create" method="post"><partial name="_Form" model="Model" /></form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

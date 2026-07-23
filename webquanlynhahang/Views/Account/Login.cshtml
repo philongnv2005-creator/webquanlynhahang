@@ -1,0 +1,34 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = "_Layout";
+}
+<div class="login-shell">
+    <div class="card border-0 shadow-lg login-card">
+        <div class="card-body p-4 p-md-5">
+            <div class="text-center mb-4">
+                <div class="login-logo"><i class="bi bi-shop-window"></i></div>
+                <h2 class="fw-bold mt-3">Đăng nhập hệ thống</h2>
+                <p class="text-secondary">Dành cho nhân viên và quản lý nhà hàng</p>
+            </div>
+            <form asp-action="Login" method="post">
+                <input asp-for="ReturnUrl" type="hidden" />
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="TenDangNhap" class="form-label"></label>
+                    <div class="input-group input-group-lg"><span class="input-group-text"><i class="bi bi-person"></i></span><input asp-for="TenDangNhap" class="form-control" autofocus /></div>
+                    <span asp-validation-for="TenDangNhap" class="text-danger small"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="MatKhau" class="form-label"></label>
+                    <div class="input-group input-group-lg"><span class="input-group-text"><i class="bi bi-lock"></i></span><input asp-for="MatKhau" class="form-control" /></div>
+                    <span asp-validation-for="MatKhau" class="text-danger small"></span>
+                </div>
+                <div class="form-check mb-4"><input asp-for="GhiNho" class="form-check-input" /><label asp-for="GhiNho" class="form-check-label"></label></div>
+                <button class="btn btn-primary btn-lg w-100" type="submit">Đăng nhập <i class="bi bi-arrow-right ms-1"></i></button>
+            </form>
+            <div class="alert alert-light border mt-4 small mb-0"><strong>Tài khoản mẫu:</strong> admin / 123456</div>
+        </div>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
