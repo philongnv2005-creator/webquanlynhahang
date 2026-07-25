@@ -1,0 +1,5 @@
+@model MonAnFormViewModel
+@{ ViewData["Title"] = "Thêm món ăn"; }
+<div class="page-heading"><div><h1>Thêm món ăn</h1><p>Bổ sung món mới vào thực đơn.</p></div></div>
+<div class="card border-0 shadow-sm"><div class="card-body p-4"><form asp-action="Create" method="post" enctype="multipart/form-data"><partial name="_Form" model="Model" /></form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
