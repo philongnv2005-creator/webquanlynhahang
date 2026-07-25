@@ -1,0 +1,26 @@
+@model IEnumerable<DatBan>
+@{ ViewData["Title"] = "Lịch đặt bàn"; }
+<div class="page-heading"><div><h1>Lịch đặt bàn</h1><p>Kiểm tra, xác nhận và xử lý yêu cầu đặt bàn theo ngày.</p></div><a class="btn btn-primary" asp-action="Create"><i class="bi bi-calendar-plus me-1"></i>Tạo đặt bàn</a></div>
+<div class="card border-0 shadow-sm">
+<div class="card-body border-bottom"><form method="get" class="row g-2 align-items-end"><div class="col-md-3"><label class="form-label">Ngày</label><input type="date" name="date" value="@(((DateTime)ViewBag.Date).ToString("yyyy-MM-dd"))" class="form-control" /></div><div class="col-md-5"><label class="form-label">Tìm kiếm</label><input name="q" value="@ViewBag.Query" class="form-control" placeholder="Tên khách, SĐT hoặc bàn..." /></div><div class="col-auto"><button class="btn btn-outline-primary">Lọc</button></div></form></div>
+<div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead><tr><th>Thời gian</th><th>Khách hàng</th><th>Bàn</th><th>Số người</th><th>Trạng thái</th><th>Ghi chú</th><th class="text-end">Thao tác</th></tr></thead><tbody>
+@if (!Model.Any()) { <tr><td colspan="7" class="text-center text-secondary py-5">Không có lịch đặt bàn trong ngày.</td></tr> }
+@foreach (var item in Model)
+{
+<tr>
+<td><strong>@item.ThoiGianBatDau.ToString("HH:mm")</strong> - @item.ThoiGianKetThuc.ToString("HH:mm")</td>
+<td><div class="fw-semibold">@item.KhachHang?.HoTen</div><small>@item.KhachHang?.SoDienThoai</small></td><td>@item.BanAn?.TenBan</td><td>@item.SoNguoi</td>
+<td><span class="badge status-badge status-@item.TrangThai.ToString().ToLowerInvariant()">@item.TrangThai.GetDisplayName()</span></td><td>@item.GhiChu</td>
+<td class="text-end">
+<a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@item.MaDatBan"><i class="bi bi-pencil"></i></a>
+<div class="btn-group">
+<button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">Trạng thái</button>
+<ul class="dropdown-menu dropdown-menu-end">
+@foreach (var status in Enum.GetValues<TrangThaiDatBan>())
+{
+<li><form asp-action="SetStatus" method="post"><input type="hidden" name="id" value="@item.MaDatBan" /><input type="hidden" name="status" value="@status" /><button class="dropdown-item">@status.GetDisplayName()</button></form></li>
+}
+</ul></div>
+</td></tr>
+}
+</tbody></table></div></div>

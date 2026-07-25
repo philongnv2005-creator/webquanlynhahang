@@ -1,0 +1,20 @@
+@model DatBanFormViewModel
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+@if (ViewBag.Customers != null)
+{
+<div class="mb-3"><label asp-for="MaKhachHang" class="form-label"></label><select asp-for="MaKhachHang" asp-items="ViewBag.Customers" class="form-select"><option value="">-- Tạo/tra cứu theo số điện thoại --</option></select><div class="form-text">Có thể chọn khách đã lưu hoặc nhập thông tin bên dưới.</div></div>
+}
+<div class="row g-3">
+<div class="col-md-6"><label asp-for="HoTenKhach" class="form-label"></label><input asp-for="HoTenKhach" class="form-control" /><span asp-validation-for="HoTenKhach" class="text-danger small"></span></div>
+<div class="col-md-6"><label asp-for="SoDienThoai" class="form-label"></label><input asp-for="SoDienThoai" class="form-control" /><span asp-validation-for="SoDienThoai" class="text-danger small"></span></div>
+<div class="col-md-6"><label asp-for="MaBan" class="form-label"></label><select asp-for="MaBan" asp-items="ViewBag.Tables" class="form-select"><option value="">-- Chọn bàn --</option></select><span asp-validation-for="MaBan" class="text-danger small"></span></div>
+<div class="col-md-6"><label asp-for="SoNguoi" class="form-label"></label><input asp-for="SoNguoi" class="form-control" /><span asp-validation-for="SoNguoi" class="text-danger small"></span></div>
+<div class="col-md-6"><label asp-for="ThoiGianBatDau" class="form-label"></label><input asp-for="ThoiGianBatDau" type="datetime-local" class="form-control" value="@Model.ThoiGianBatDau.ToString("yyyy-MM-ddTHH:mm")" /><span asp-validation-for="ThoiGianBatDau" class="text-danger small"></span></div>
+<div class="col-md-6"><label asp-for="ThoiGianKetThuc" class="form-label"></label><input asp-for="ThoiGianKetThuc" type="datetime-local" class="form-control" value="@Model.ThoiGianKetThuc.ToString("yyyy-MM-ddTHH:mm")" /><span asp-validation-for="ThoiGianKetThuc" class="text-danger small"></span></div>
+@if (User.Identity?.IsAuthenticated == true)
+{
+<div class="col-md-6"><label asp-for="TrangThai" class="form-label"></label><select asp-for="TrangThai" asp-items="Html.GetEnumSelectList<TrangThaiDatBan>()" class="form-select"></select></div>
+}
+<div class="col-12"><label asp-for="GhiChu" class="form-label"></label><textarea asp-for="GhiChu" class="form-control" rows="3"></textarea></div>
+</div>
+<div class="mt-4"><button class="btn btn-primary"><i class="bi bi-calendar-check me-1"></i>Lưu đặt bàn</button><a class="btn btn-light" asp-controller="Home" asp-action="Index">Quay lại</a></div>
