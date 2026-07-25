@@ -1,0 +1,5 @@
+@model DanhMucMonAn
+@{ ViewData["Title"] = "Thêm danh mục"; }
+<div class="page-heading"><div><h1>Thêm danh mục</h1><p>Tạo nhóm món mới cho thực đơn.</p></div></div>
+<div class="card border-0 shadow-sm form-card"><div class="card-body p-4"><form asp-action="Create" method="post"><partial name="_Form" model="Model" /></form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
