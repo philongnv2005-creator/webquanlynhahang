@@ -1,10 +1,10 @@
 using System.Data;
 using Microsoft.EntityFrameworkCore;
-using RestaurantManager.Data;
-using RestaurantManager.Models;
-using RestaurantManager.Models.Enums;
+using webquanlynhahang.Data;
+using webquanlynhahang.Models;
+using webquanlynhahang.Models.Enums;
 
-namespace RestaurantManager.Services;
+namespace webquanlynhahang.Services;
 
 public class PaymentService : IPaymentService
 {

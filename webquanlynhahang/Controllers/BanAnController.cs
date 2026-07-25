@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RestaurantManager.Data;
-using RestaurantManager.Helpers;
-using RestaurantManager.Models;
+using webquanlynhahang.Data;
+using webquanlynhahang.Helpers;
+using webquanlynhahang.Models;
 
-namespace RestaurantManager.Controllers;
+namespace webquanlynhahang.Controllers;
 
 [Authorize(Roles = RoleNames.NoiBo)]
 public class BanAnController : Controller

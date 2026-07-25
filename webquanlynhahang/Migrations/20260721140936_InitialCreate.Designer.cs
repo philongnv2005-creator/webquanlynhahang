@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestaurantManager.Data;
+using webquanlynhahang.Data;
 
 #nullable disable
 
-namespace RestaurantManager.Migrations
+namespace webquanlynhahang.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20260721140936_InitialCreate")]
@@ -25,7 +25,7 @@ namespace RestaurantManager.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RestaurantManager.Models.BanAn", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.BanAn", b =>
                 {
                     b.Property<int>("MaBan")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace RestaurantManager.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.ChiTietDonGoiMon", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.ChiTietDonGoiMon", b =>
                 {
                     b.Property<int>("MaChiTiet")
                         .ValueGeneratedOnAdd()
@@ -108,7 +108,7 @@ namespace RestaurantManager.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.DanhMucMonAn", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.DanhMucMonAn", b =>
                 {
                     b.Property<int>("MaDanhMuc")
                         .ValueGeneratedOnAdd()
@@ -136,7 +136,7 @@ namespace RestaurantManager.Migrations
                     b.ToTable("DanhMucMonAn", (string)null);
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.DatBan", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.DatBan", b =>
                 {
                     b.Property<int>("MaDatBan")
                         .ValueGeneratedOnAdd()
@@ -182,7 +182,7 @@ namespace RestaurantManager.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.DonGoiMon", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.DonGoiMon", b =>
                 {
                     b.Property<int>("MaDon")
                         .ValueGeneratedOnAdd()
@@ -218,7 +218,7 @@ namespace RestaurantManager.Migrations
                     b.ToTable("DonGoiMon", (string)null);
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.HoaDon", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.HoaDon", b =>
                 {
                     b.Property<int>("MaHoaDon")
                         .ValueGeneratedOnAdd()
@@ -276,7 +276,7 @@ namespace RestaurantManager.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.KhachHang", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.KhachHang", b =>
                 {
                     b.Property<int>("MaKhachHang")
                         .ValueGeneratedOnAdd()
@@ -312,7 +312,7 @@ namespace RestaurantManager.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.MonAn", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.MonAn", b =>
                 {
                     b.Property<int>("MaMon")
                         .ValueGeneratedOnAdd()
@@ -355,7 +355,7 @@ namespace RestaurantManager.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.NguoiDung", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.NguoiDung", b =>
                 {
                     b.Property<int>("MaNguoiDung")
                         .ValueGeneratedOnAdd()
@@ -394,7 +394,7 @@ namespace RestaurantManager.Migrations
                     b.ToTable("NguoiDung", (string)null);
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.VaiTro", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.VaiTro", b =>
                 {
                     b.Property<int>("MaVaiTro")
                         .ValueGeneratedOnAdd()
@@ -419,15 +419,15 @@ namespace RestaurantManager.Migrations
                     b.ToTable("VaiTro", (string)null);
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.ChiTietDonGoiMon", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.ChiTietDonGoiMon", b =>
                 {
-                    b.HasOne("RestaurantManager.Models.DonGoiMon", "DonGoiMon")
+                    b.HasOne("webquanlynhahang.Models.DonGoiMon", "DonGoiMon")
                         .WithMany("ChiTietDonGoiMons")
                         .HasForeignKey("MaDon")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RestaurantManager.Models.MonAn", "MonAn")
+                    b.HasOne("webquanlynhahang.Models.MonAn", "MonAn")
                         .WithMany("ChiTietDonGoiMons")
                         .HasForeignKey("MaMon")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -438,15 +438,15 @@ namespace RestaurantManager.Migrations
                     b.Navigation("MonAn");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.DatBan", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.DatBan", b =>
                 {
-                    b.HasOne("RestaurantManager.Models.BanAn", "BanAn")
+                    b.HasOne("webquanlynhahang.Models.BanAn", "BanAn")
                         .WithMany("DatBans")
                         .HasForeignKey("MaBan")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("RestaurantManager.Models.KhachHang", "KhachHang")
+                    b.HasOne("webquanlynhahang.Models.KhachHang", "KhachHang")
                         .WithMany("DatBans")
                         .HasForeignKey("MaKhachHang")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -457,20 +457,20 @@ namespace RestaurantManager.Migrations
                     b.Navigation("KhachHang");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.DonGoiMon", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.DonGoiMon", b =>
                 {
-                    b.HasOne("RestaurantManager.Models.BanAn", "BanAn")
+                    b.HasOne("webquanlynhahang.Models.BanAn", "BanAn")
                         .WithMany("DonGoiMons")
                         .HasForeignKey("MaBan")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("RestaurantManager.Models.KhachHang", "KhachHang")
+                    b.HasOne("webquanlynhahang.Models.KhachHang", "KhachHang")
                         .WithMany("DonGoiMons")
                         .HasForeignKey("MaKhachHang")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("RestaurantManager.Models.NguoiDung", "NhanVien")
+                    b.HasOne("webquanlynhahang.Models.NguoiDung", "NhanVien")
                         .WithMany("DonGoiMons")
                         .HasForeignKey("MaNhanVien")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -483,15 +483,15 @@ namespace RestaurantManager.Migrations
                     b.Navigation("NhanVien");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.HoaDon", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.HoaDon", b =>
                 {
-                    b.HasOne("RestaurantManager.Models.DonGoiMon", "DonGoiMon")
+                    b.HasOne("webquanlynhahang.Models.DonGoiMon", "DonGoiMon")
                         .WithOne("HoaDon")
-                        .HasForeignKey("RestaurantManager.Models.HoaDon", "MaDon")
+                        .HasForeignKey("webquanlynhahang.Models.HoaDon", "MaDon")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("RestaurantManager.Models.NguoiDung", "NhanVien")
+                    b.HasOne("webquanlynhahang.Models.NguoiDung", "NhanVien")
                         .WithMany("HoaDons")
                         .HasForeignKey("MaNhanVien")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -502,9 +502,9 @@ namespace RestaurantManager.Migrations
                     b.Navigation("NhanVien");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.MonAn", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.MonAn", b =>
                 {
-                    b.HasOne("RestaurantManager.Models.DanhMucMonAn", "DanhMucMonAn")
+                    b.HasOne("webquanlynhahang.Models.DanhMucMonAn", "DanhMucMonAn")
                         .WithMany("MonAns")
                         .HasForeignKey("MaDanhMuc")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -513,9 +513,9 @@ namespace RestaurantManager.Migrations
                     b.Navigation("DanhMucMonAn");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.NguoiDung", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.NguoiDung", b =>
                 {
-                    b.HasOne("RestaurantManager.Models.VaiTro", "VaiTro")
+                    b.HasOne("webquanlynhahang.Models.VaiTro", "VaiTro")
                         .WithMany("NguoiDungs")
                         .HasForeignKey("MaVaiTro")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -524,45 +524,45 @@ namespace RestaurantManager.Migrations
                     b.Navigation("VaiTro");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.BanAn", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.BanAn", b =>
                 {
                     b.Navigation("DatBans");
 
                     b.Navigation("DonGoiMons");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.DanhMucMonAn", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.DanhMucMonAn", b =>
                 {
                     b.Navigation("MonAns");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.DonGoiMon", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.DonGoiMon", b =>
                 {
                     b.Navigation("ChiTietDonGoiMons");
 
                     b.Navigation("HoaDon");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.KhachHang", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.KhachHang", b =>
                 {
                     b.Navigation("DatBans");
 
                     b.Navigation("DonGoiMons");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.MonAn", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.MonAn", b =>
                 {
                     b.Navigation("ChiTietDonGoiMons");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.NguoiDung", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.NguoiDung", b =>
                 {
                     b.Navigation("DonGoiMons");
 
                     b.Navigation("HoaDons");
                 });
 
-            modelBuilder.Entity("RestaurantManager.Models.VaiTro", b =>
+            modelBuilder.Entity("webquanlynhahang.Models.VaiTro", b =>
                 {
                     b.Navigation("NguoiDungs");
                 });

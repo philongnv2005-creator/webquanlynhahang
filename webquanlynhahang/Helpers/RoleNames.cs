@@ -1,4 +1,4 @@
-namespace RestaurantManager.Helpers;
+namespace webquanlynhahang.Helpers;
 
 public static class RoleNames
 {

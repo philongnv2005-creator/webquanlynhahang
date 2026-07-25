@@ -1,4 +1,4 @@
-namespace RestaurantManager.ViewModels;
+namespace webquanlynhahang.ViewModels;
 
 public class DashboardViewModel
 {

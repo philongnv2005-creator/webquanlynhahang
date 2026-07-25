@@ -1,0 +1,8 @@
+@model IEnumerable<DonGoiMon>
+@{ ViewData["Title"] = "Đơn gọi món"; }
+<div class="page-heading"><div><h1>Đơn gọi món</h1><p>Quản lý các lần phục vụ tại bàn.</p></div><a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-lg me-1"></i>Tạo đơn</a></div>
+<div class="card border-0 shadow-sm">
+<div class="card-body border-bottom"><form method="get" class="row g-2"><div class="col-md-4"><select name="status" class="form-select"><option value="">Tất cả trạng thái</option>@foreach(var s in Enum.GetValues<TrangThaiDon>()){if(ViewBag.Status != null && (TrangThaiDon)ViewBag.Status == s){<option value="@s" selected>@s.GetDisplayName()</option>}else{<option value="@s">@s.GetDisplayName()</option>}}</select></div><div class="col-auto"><button class="btn btn-outline-primary">Lọc</button></div></form></div>
+<div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead><tr><th>Mã đơn</th><th>Bàn</th><th>Khách hàng</th><th>Nhân viên</th><th>Ngày tạo</th><th class="text-end">Tạm tính</th><th>Trạng thái</th><th></th></tr></thead><tbody>
+@foreach(var item in Model){var total=item.ChiTietDonGoiMons.Where(x=>x.TrangThaiMon!=TrangThaiMonTrongDon.DaHuy).Sum(x=>x.ThanhTien);<tr><td class="fw-bold">#@item.MaDon</td><td>@item.BanAn?.TenBan</td><td>@(item.KhachHang?.HoTen ?? "Khách vãng lai")</td><td>@item.NhanVien?.HoTen</td><td>@item.NgayTao.ToString("dd/MM/yyyy HH:mm")</td><td class="text-end fw-semibold">@total.ToString("N0") đ</td><td><span class="badge text-bg-light border">@item.TrangThai.GetDisplayName()</span></td><td class="text-end"><a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@item.MaDon">Chi tiết</a></td></tr>}
+</tbody></table></div></div>

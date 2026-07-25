@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using RestaurantManager.Data;
-using RestaurantManager.Models;
+using webquanlynhahang.Data;
+using webquanlynhahang.Models;
 
-namespace RestaurantManager.Services;
+namespace webquanlynhahang.Services;
 
 public class AuthService : IAuthService
 {

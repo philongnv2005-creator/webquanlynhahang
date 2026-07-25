@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using RestaurantManager.Models;
+using webquanlynhahang.Models;
 
-namespace RestaurantManager.Data;
+namespace webquanlynhahang.Data;
 
 public class AppDbContext : DbContext
 {

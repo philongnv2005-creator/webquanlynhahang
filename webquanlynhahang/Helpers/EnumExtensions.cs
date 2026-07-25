@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace RestaurantManager.Helpers;
+namespace webquanlynhahang.Helpers;
 
 public static class EnumExtensions
 {

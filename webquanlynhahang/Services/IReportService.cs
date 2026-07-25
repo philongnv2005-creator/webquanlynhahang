@@ -1,6 +1,6 @@
-using RestaurantManager.ViewModels;
+using webquanlynhahang.ViewModels;
 
-namespace RestaurantManager.Services;
+namespace webquanlynhahang.Services;
 
 public interface IReportService
 {

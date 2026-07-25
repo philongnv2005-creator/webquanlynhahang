@@ -1,0 +1,13 @@
+@model MonAnFormViewModel
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<div class="row g-3">
+    <div class="col-md-8"><label asp-for="TenMon" class="form-label"></label><input asp-for="TenMon" class="form-control" /><span asp-validation-for="TenMon" class="text-danger small"></span></div>
+    <div class="col-md-4"><label asp-for="DonGia" class="form-label"></label><div class="input-group"><input asp-for="DonGia" class="form-control" /><span class="input-group-text">đ</span></div><span asp-validation-for="DonGia" class="text-danger small"></span></div>
+    <div class="col-md-6"><label asp-for="MaDanhMuc" class="form-label"></label><select asp-for="MaDanhMuc" asp-items="ViewBag.Categories" class="form-select"><option value="">-- Chọn danh mục --</option></select><span asp-validation-for="MaDanhMuc" class="text-danger small"></span></div>
+    <div class="col-md-6"><label asp-for="TrangThai" class="form-label"></label><select asp-for="TrangThai" asp-items="Html.GetEnumSelectList<TrangThaiMonAn>()" class="form-select"></select></div>
+    <div class="col-12"><label asp-for="MoTa" class="form-label"></label><textarea asp-for="MoTa" rows="4" class="form-control"></textarea><span asp-validation-for="MoTa" class="text-danger small"></span></div>
+    <div class="col-12"><label asp-for="HinhAnhFile" class="form-label"></label><input asp-for="HinhAnhFile" class="form-control" accept=".jpg,.jpeg,.png,.webp" /><div class="form-text">JPG, PNG hoặc WEBP; tối đa 5 MB.</div><span asp-validation-for="HinhAnhFile" class="text-danger small"></span>
+        @if (!string.IsNullOrWhiteSpace(Model.HinhAnhHienTai)){<img src="@Model.HinhAnhHienTai" class="image-preview mt-3" alt="Ảnh hiện tại" />}
+    </div>
+</div>
+<div class="mt-4"><button class="btn btn-primary" type="submit"><i class="bi bi-save me-1"></i>Lưu</button><a class="btn btn-light" asp-action="Index">Quay lại</a></div>

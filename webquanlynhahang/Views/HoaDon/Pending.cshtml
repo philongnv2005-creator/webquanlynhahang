@@ -1,0 +1,7 @@
+@model IEnumerable<DonGoiMon>
+@{ ViewData["Title"] = "Chờ thanh toán"; }
+<div class="page-heading"><div><h1>Đơn chờ thanh toán</h1><p>Kiểm tra chi tiết và ghi nhận thanh toán chính xác.</p></div><a class="btn btn-outline-primary" asp-action="Index">Lịch sử hóa đơn</a></div>
+<div class="row g-3">
+@if(!Model.Any()){<div class="col-12"><div class="empty-state"><i class="bi bi-check2-circle text-success fs-1"></i><h4>Không có đơn chờ thanh toán</h4><p>Tất cả đơn đã được xử lý.</p></div></div>}
+@foreach(var item in Model){var total=item.ChiTietDonGoiMons.Where(x=>x.TrangThaiMon!=TrangThaiMonTrongDon.DaHuy).Sum(x=>x.ThanhTien);<div class="col-md-6 col-xl-4"><div class="card border-0 shadow-sm h-100"><div class="card-body"><div class="d-flex justify-content-between"><div><span class="text-secondary">Đơn #@item.MaDon</span><h4>@item.BanAn?.TenBan</h4></div><i class="bi bi-receipt fs-2 text-warning"></i></div><p class="mb-2">@(item.KhachHang?.HoTen ?? "Khách vãng lai")</p><div class="d-flex justify-content-between border-top pt-3"><span>@item.ChiTietDonGoiMons.Count(x=>x.TrangThaiMon!=TrangThaiMonTrongDon.DaHuy) dòng món</span><strong class="text-danger">@total.ToString("N0") đ</strong></div></div><div class="card-footer bg-white border-0 pb-3"><a class="btn btn-primary w-100" asp-action="Pay" asp-route-id="@item.MaDon">Thanh toán</a></div></div></div>}
+</div>

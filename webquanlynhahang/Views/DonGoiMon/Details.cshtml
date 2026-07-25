@@ -1,0 +1,57 @@
+@model DonGoiMon
+@{
+    ViewData["Title"] = $"Đơn #{Model.MaDon}";
+    var total = Model.ChiTietDonGoiMons.Where(x => x.TrangThaiMon != TrangThaiMonTrongDon.DaHuy).Sum(x => x.ThanhTien);
+}
+<div class="page-heading">
+    <div><h1>Đơn gọi món #@Model.MaDon</h1><p>@Model.BanAn?.TenBan · @(Model.KhachHang?.HoTen ?? "Khách vãng lai") · @Model.NgayTao.ToString("dd/MM/yyyy HH:mm")</p></div>
+    <div class="d-flex gap-2"><span class="badge fs-6 text-bg-light border align-self-center">@Model.TrangThai.GetDisplayName()</span><a class="btn btn-light" asp-action="Index">Danh sách đơn</a></div>
+</div>
+<div class="row g-4">
+<div class="col-xl-8">
+<div class="card border-0 shadow-sm">
+<div class="card-header bg-white d-flex justify-content-between align-items-center py-3"><h5 class="mb-0">Chi tiết món</h5><strong class="text-danger">Tạm tính: @total.ToString("N0") đ</strong></div>
+<div class="table-responsive"><table class="table align-middle mb-0"><thead><tr><th>Món ăn</th><th class="text-end">Đơn giá</th><th style="width:110px">Số lượng</th><th class="text-end">Thành tiền</th><th style="width:170px">Trạng thái</th><th></th></tr></thead><tbody>
+@if (!Model.ChiTietDonGoiMons.Any()){<tr><td colspan="6" class="text-center text-secondary py-5">Chưa có món trong đơn.</td></tr>}
+@foreach(var item in Model.ChiTietDonGoiMons.OrderBy(x=>x.MaChiTiet))
+{
+<tr class="@(item.TrangThaiMon == TrangThaiMonTrongDon.DaHuy ? "text-decoration-line-through opacity-50" : "")">
+<td class="fw-semibold">@item.MonAn?.TenMon</td><td class="text-end">@item.DonGia.ToString("N0") đ</td>
+<td colspan="3">
+@if(Model.TrangThai == TrangThaiDon.DangPhucVu && item.TrangThaiMon != TrangThaiMonTrongDon.DaHuy)
+{
+<form asp-action="UpdateItem" method="post" class="row g-2 align-items-center">
+<input type="hidden" name="MaChiTiet" value="@item.MaChiTiet" /><input type="hidden" name="MaDon" value="@Model.MaDon" />
+<div class="col-3"><input type="number" name="SoLuong" value="@item.SoLuong" min="1" class="form-control form-control-sm" /></div>
+<div class="col-4 text-end fw-semibold">@item.ThanhTien.ToString("N0") đ</div>
+<div class="col-5"><select name="TrangThaiMon" class="form-select form-select-sm">@foreach(var status in Enum.GetValues<TrangThaiMonTrongDon>()){if(status==item.TrangThaiMon){<option value="@status" selected>@status.GetDisplayName()</option>}else{<option value="@status">@status.GetDisplayName()</option>}}</select></div>
+<div class="col-12 text-end"><button class="btn btn-sm btn-outline-primary">Cập nhật</button></div>
+</form>
+}
+else
+{
+<div class="row"><div class="col-3">@item.SoLuong</div><div class="col-4 text-end fw-semibold">@item.ThanhTien.ToString("N0") đ</div><div class="col-5">@item.TrangThaiMon.GetDisplayName()</div></div>
+}
+</td>
+<td class="text-end">@if(Model.TrangThai==TrangThaiDon.DangPhucVu && item.TrangThaiMon is not TrangThaiMonTrongDon.DaHuy and not TrangThaiMonTrongDon.DaPhucVu){<form asp-action="CancelItem" method="post" data-confirm="Hủy món này?"><input type="hidden" name="id" value="@item.MaChiTiet" /><input type="hidden" name="orderId" value="@Model.MaDon" /><button class="btn btn-sm btn-outline-danger"><i class="bi bi-x-lg"></i></button></form>}</td>
+</tr>
+}
+</tbody></table></div>
+</div>
+</div>
+<div class="col-xl-4">
+@if(Model.TrangThai == TrangThaiDon.DangPhucVu)
+{
+<div class="card border-0 shadow-sm mb-4"><div class="card-header bg-white py-3"><h5 class="mb-0">Thêm món</h5></div><div class="card-body"><form asp-action="AddItem" method="post"><input type="hidden" name="MaDon" value="@Model.MaDon" /><div class="mb-3"><label class="form-label">Món ăn</label><select name="MaMon" asp-items="ViewBag.Dishes" class="form-select"><option value="">-- Chọn món --</option></select></div><div class="mb-3"><label class="form-label">Số lượng</label><input type="number" name="SoLuong" value="1" min="1" class="form-control" /></div><button class="btn btn-primary w-100"><i class="bi bi-plus-lg me-1"></i>Thêm vào đơn</button></form></div></div>
+<div class="card border-0 shadow-sm"><div class="card-body"><h5>Chốt đơn</h5><p class="text-secondary small">Sau khi chuyển sang chờ thanh toán, nhân viên không thể thêm hoặc sửa món.</p><form asp-action="AwaitPayment" asp-route-id="@Model.MaDon" method="post" data-confirm="Chuyển đơn sang chờ thanh toán?"><button class="btn btn-warning w-100"><i class="bi bi-cash-coin me-1"></i>Yêu cầu thanh toán</button></form></div></div>
+}
+else if(Model.HoaDon is not null)
+{
+<div class="card border-0 shadow-sm"><div class="card-body text-center"><i class="bi bi-check-circle-fill text-success fs-1"></i><h5 class="mt-2">Đã thanh toán</h5><a class="btn btn-outline-primary" asp-controller="HoaDon" asp-action="Details" asp-route-id="@Model.HoaDon.MaHoaDon">Xem hóa đơn</a></div></div>
+}
+else
+{
+<div class="card border-0 shadow-sm"><div class="card-body text-center"><i class="bi bi-hourglass-split text-warning fs-1"></i><h5 class="mt-2">Đang chờ thu ngân</h5><p class="text-secondary">Đơn đã được chốt để thanh toán.</p></div></div>
+}
+</div>
+</div>

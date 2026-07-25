@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using RestaurantManager.Models.Enums;
+using webquanlynhahang.Models.Enums;
 
-namespace RestaurantManager.ViewModels;
+namespace webquanlynhahang.ViewModels;
 
 public class PaymentViewModel
 {

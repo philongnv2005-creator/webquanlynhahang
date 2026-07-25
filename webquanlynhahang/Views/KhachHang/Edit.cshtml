@@ -1,0 +1,4 @@
+@model KhachHang
+@{ ViewData["Title"] = "Sửa khách hàng"; }
+<div class="page-heading"><div><h1>Sửa khách hàng</h1><p>Cập nhật thông tin liên hệ.</p></div></div><div class="card border-0 shadow-sm form-card"><div class="card-body p-4"><form asp-action="Edit" asp-route-id="@Model.MaKhachHang" method="post"><input asp-for="MaKhachHang" type="hidden" /><partial name="_Form" model="Model" /></form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantManager.Models;
+namespace webquanlynhahang.Models;
 
 public class NguoiDung
 {

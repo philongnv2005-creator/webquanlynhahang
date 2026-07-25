@@ -1,0 +1,11 @@
+@model IEnumerable<KhachHang>
+@{ ViewData["Title"] = "Khách hàng"; }
+<div class="page-heading"><div><h1>Khách hàng</h1><p>Lưu trữ thông tin liên hệ và lịch sử sử dụng dịch vụ.</p></div><a class="btn btn-primary" asp-action="Create"><i class="bi bi-person-plus me-1"></i>Thêm khách hàng</a></div>
+<div class="card border-0 shadow-sm">
+<div class="card-body border-bottom"><form method="get" class="row g-2"><div class="col-md-5"><input name="q" value="@ViewBag.Query" class="form-control" placeholder="Tìm tên hoặc số điện thoại..." /></div><div class="col-auto"><button class="btn btn-outline-primary">Tìm kiếm</button></div></form></div>
+<div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead><tr><th>Họ tên</th><th>Số điện thoại</th><th>Địa chỉ</th><th>Ghi chú</th><th class="text-end">Thao tác</th></tr></thead><tbody>
+@foreach (var item in Model)
+{
+<tr><td class="fw-semibold">@item.HoTen</td><td><a href="tel:@item.SoDienThoai">@item.SoDienThoai</a></td><td>@item.DiaChi</td><td>@item.GhiChu</td><td class="text-end"><a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.MaKhachHang"><i class="bi bi-eye"></i></a> <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@item.MaKhachHang"><i class="bi bi-pencil"></i></a></td></tr>
+}
+</tbody></table></div></div>

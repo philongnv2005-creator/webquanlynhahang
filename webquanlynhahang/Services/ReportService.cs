@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using RestaurantManager.Data;
-using RestaurantManager.Models.Enums;
-using RestaurantManager.ViewModels;
+using webquanlynhahang.Data;
+using webquanlynhahang.Models.Enums;
+using webquanlynhahang.ViewModels;
 
-namespace RestaurantManager.Services;
+namespace webquanlynhahang.Services;
 
 public class ReportService : IReportService
 {

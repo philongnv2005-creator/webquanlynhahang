@@ -1,6 +1,6 @@
-using RestaurantManager.Models;
+using webquanlynhahang.Models;
 
-namespace RestaurantManager.Services;
+namespace webquanlynhahang.Services;
 
 public interface IAuthService
 {

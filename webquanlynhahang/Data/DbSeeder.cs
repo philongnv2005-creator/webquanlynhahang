@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using RestaurantManager.Helpers;
-using RestaurantManager.Models;
-using RestaurantManager.Models.Enums;
+using webquanlynhahang.Helpers;
+using webquanlynhahang.Models;
+using webquanlynhahang.Models.Enums;
 
-namespace RestaurantManager.Data;
+namespace webquanlynhahang.Data;
 
 public static class DbSeeder
 {

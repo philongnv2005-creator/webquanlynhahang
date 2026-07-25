@@ -1,6 +1,6 @@
-using RestaurantManager.Models.Enums;
+using webquanlynhahang.Models.Enums;
 
-namespace RestaurantManager.Services;
+namespace webquanlynhahang.Services;
 
 public interface IOrderService
 {

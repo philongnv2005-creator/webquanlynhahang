@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantManager.ViewModels;
+namespace webquanlynhahang.ViewModels;
 
 public class LoginViewModel
 {

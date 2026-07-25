@@ -1,0 +1,7 @@
+@model DatBanFormViewModel
+@{ ViewData["Title"] = "Đặt bàn trực tuyến"; }
+<div class="row justify-content-center"><div class="col-xl-8">
+<div class="page-heading"><div><h1>Đặt bàn trực tuyến</h1><p>Gửi thông tin, nhà hàng sẽ xác nhận yêu cầu của bạn.</p></div></div>
+<div class="card border-0 shadow-sm"><div class="card-body p-4 p-lg-5"><form asp-action="PublicCreate" method="post"><partial name="_Form" model="Model" /></form></div></div>
+</div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

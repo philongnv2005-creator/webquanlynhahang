@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using RestaurantManager.Data;
-using RestaurantManager.Helpers;
-using RestaurantManager.Models;
-using RestaurantManager.Services;
-using RestaurantManager.ViewModels;
+using webquanlynhahang.Data;
+using webquanlynhahang.Helpers;
+using webquanlynhahang.Models;
+using webquanlynhahang.Services;
+using webquanlynhahang.ViewModels;
 
-namespace RestaurantManager.Controllers;
+namespace webquanlynhahang.Controllers;
 
 [Authorize(Roles = RoleNames.QuanTriVien)]
 public class NguoiDungController : Controller

@@ -1,0 +1,7 @@
+@model KhachHang
+@{ ViewData["Title"] = "Chi tiết khách hàng"; }
+<div class="page-heading"><div><h1>@Model.HoTen</h1><p><i class="bi bi-telephone me-1"></i>@Model.SoDienThoai · @Model.DiaChi</p></div><a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.MaKhachHang">Chỉnh sửa</a></div>
+<div class="row g-4">
+<div class="col-lg-6"><div class="card border-0 shadow-sm"><div class="card-header bg-white"><h5 class="mb-0">Lịch sử đặt bàn</h5></div><div class="table-responsive"><table class="table mb-0"><thead><tr><th>Thời gian</th><th>Bàn</th><th>Trạng thái</th></tr></thead><tbody>@foreach(var item in Model.DatBans.OrderByDescending(x=>x.ThoiGianBatDau)){<tr><td>@item.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm")</td><td>@item.BanAn?.TenBan</td><td>@item.TrangThai.GetDisplayName()</td></tr>}</tbody></table></div></div></div>
+<div class="col-lg-6"><div class="card border-0 shadow-sm"><div class="card-header bg-white"><h5 class="mb-0">Lịch sử hóa đơn</h5></div><div class="table-responsive"><table class="table mb-0"><thead><tr><th>Mã đơn</th><th>Ngày</th><th class="text-end">Thành tiền</th></tr></thead><tbody>@foreach(var item in Model.DonGoiMons.Where(x=>x.HoaDon!=null).OrderByDescending(x=>x.NgayTao)){<tr><td>#@item.MaDon</td><td>@item.HoaDon!.NgayThanhToan.ToString("dd/MM/yyyy")</td><td class="text-end">@item.HoaDon.ThanhTien.ToString("N0") đ</td></tr>}</tbody></table></div></div></div>
+</div>

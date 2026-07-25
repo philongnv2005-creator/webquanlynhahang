@@ -1,0 +1,26 @@
+@model HoaDon
+@{ ViewData["Title"] = $"Hóa đơn #{Model.MaHoaDon}"; }
+<div class="invoice-sheet shadow-sm" id="invoice">
+<div class="text-center border-bottom pb-3 mb-4"><h2 class="fw-bold">NHÀ HÀNG HƯƠNG VIỆT</h2><p class="mb-1">Website quản lý nhà hàng</p><h4 class="mt-3">HÓA ĐƠN THANH TOÁN</h4><span>Mã hóa đơn: #@Model.MaHoaDon</span></div>
+<div class="row mb-4"><div class="col-6"><p class="mb-1"><strong>Bàn:</strong> @Model.DonGoiMon?.BanAn?.TenBan</p><p class="mb-1"><strong>Khách:</strong> @(Model.DonGoiMon?.KhachHang?.HoTen ?? "Khách vãng lai")</p></div><div class="col-6 text-end"><p class="mb-1"><strong>Ngày:</strong> @Model.NgayThanhToan.ToString("dd/MM/yyyy HH:mm")</p><p class="mb-1"><strong>Thu ngân:</strong> @Model.NhanVien?.HoTen</p></div></div>
+<table class="table">
+<thead><tr><th>STT</th><th>Tên món</th><th class="text-center">SL</th><th class="text-end">Đơn giá</th><th class="text-end">Thành tiền</th></tr></thead>
+<tbody>
+@{ var index = 1; }
+@foreach (var item in Model.DonGoiMon!.ChiTietDonGoiMons.Where(x => x.TrangThaiMon != TrangThaiMonTrongDon.DaHuy))
+{
+    <tr>
+        <td>@index</td>
+        <td>@item.MonAn?.TenMon</td>
+        <td class="text-center">@item.SoLuong</td>
+        <td class="text-end">@item.DonGia.ToString("N0")</td>
+        <td class="text-end">@item.ThanhTien.ToString("N0")</td>
+    </tr>
+    index++;
+}
+</tbody>
+</table>
+<div class="row justify-content-end"><div class="col-md-6"><div class="d-flex justify-content-between py-1"><span>Tổng tiền:</span><strong>@Model.TongTien.ToString("N0") đ</strong></div><div class="d-flex justify-content-between py-1"><span>Giảm giá:</span><strong>@Model.GiamGia.ToString("N0") đ</strong></div><div class="d-flex justify-content-between py-2 border-top fs-5"><span>Thành tiền:</span><strong class="text-danger">@Model.ThanhTien.ToString("N0") đ</strong></div><div class="d-flex justify-content-between py-1"><span>Phương thức:</span><span>@Model.PhuongThuc.GetDisplayName()</span></div></div></div>
+<div class="text-center mt-5"><p class="fw-semibold">Cảm ơn quý khách và hẹn gặp lại!</p></div>
+</div>
+<div class="text-center mt-3 no-print"><button class="btn btn-primary" onclick="window.print()"><i class="bi bi-printer me-1"></i>In hóa đơn</button> <a class="btn btn-light" asp-action="Index">Quay lại</a></div>
